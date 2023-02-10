@@ -50,7 +50,7 @@ const gecko = /^\s*(.*?)(?:\((.*?)\))?(?:^|@)?((?:file|https?|blob|chrome|webpac
 const winjs = /^\s*at (?:((?:\[object object\])?.+) )?\(?((?:file|ms-appx|https?|webpack|blob):.*?):(\d+)(?::(\d+))?\)?\s*$/i;
 const geckoEval = /(\S+) line (\d+)(?: > eval line \d+)* > eval/i;
 const chromeEval = /\((\S*)(?::(\d+))(?::(\d+))\)/;
-const miniapp = /^\s*at (\w.*) \((\w*.js):(\d*):(\d*)/i;
+const miniapp = /^\s*at (\w.*) \((.*\.js):(\d*):(\d*)/i;
 
 /** JSDoc */
 export function computeStackTrace(ex: any): StackTrace {

@@ -31,6 +31,7 @@ export function eventFromUnknownInput(
     event = eventFromStacktrace(computeStackTrace(exception as Error));
     return event;
   }
+  // @ts-ignore
   if (isDOMError(exception as DOMError) || isDOMException(exception as DOMException)) {
     // If it is a DOMError or DOMException (which are legacy APIs, but still supported in some browsers)
     // then we just extract the name and message, as they don't provide anything else
