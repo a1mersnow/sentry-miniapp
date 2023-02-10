@@ -157,7 +157,7 @@ function computeStackTraceFromStackProp(ex: any): StackTrace | null {
       };
     } else if ((parts = miniapp.exec(lines[i]))) {
       element = {
-        url: parts[2],
+        url: parts[2] && !parts[2].includes('/') ? `~/${parts[2]}` : parts[2],
         func: parts[1] || UNKNOWN_FUNCTION,
         args: [],
         line: parts[3] ? +parts[3] : null,
