@@ -268,3 +268,14 @@ export function keypressEventHandler(): (event: Event) => void {
     }, debounceDuration) as any) as number;
   };
 }
+
+export function restoreErrorFromString(errorStr: string): Error {
+  const lines = errorStr.split('\n')
+  const msgs = lines.filter(l => !l.startsWith(' '))
+  const msg = msgs[msgs.length - 1]
+  const stacks = lines.filter(l => l.startsWith(' '))
+  const error = new Error(msg)
+  // @ts-ignore
+  error.stack = [msg, ...stacks].join('\n')
+  return error
+}

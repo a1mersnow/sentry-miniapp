@@ -56,6 +56,7 @@ export class MiniappClient extends BaseClient<MiniappBackend, MiniappOptions> {
       ...event.sdk,
       name: SDK_NAME,
       packages: [
+        // @ts-ignore
         ...((event.sdk && event.sdk.packages) || []),
         {
           name: "npm:@sentry/miniapp",

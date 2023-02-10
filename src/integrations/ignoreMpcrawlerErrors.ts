@@ -31,6 +31,7 @@ export class IgnoreMpcrawlerErrors implements Integration {
       ) {
         const options = sdk.getLaunchOptionsSync();
 
+        // 微信小程序 1129 爬虫访问
         if (options.scene === 1129) {
           return null;
         }
