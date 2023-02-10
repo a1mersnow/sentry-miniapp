@@ -270,12 +270,12 @@ export function keypressEventHandler(): (event: Event) => void {
 }
 
 export function restoreErrorFromString(errorStr: string): Error {
-  const lines = errorStr.split('\n')
-  const msgs = lines.filter(l => !l.startsWith(' '))
-  const msg = msgs[msgs.length - 1]
-  const stacks = lines.filter(l => l.startsWith(' '))
+  const lines = errorStr.split('\n').filter(l => !l.includes('MiniProgramError'))
+  const msg = lines[0]
+  const stackHead = lines[1]
+  const stackBody = lines.slice(2).filter(l => /^\s*at /.test(l)).map(l => `    ${l.trimStart()}`)
   const error = new Error(msg)
   // @ts-ignore
-  error.stack = [msg, ...stacks].join('\n')
+  error.stack = [stackHead, ...stackBody].join('\n')
   return error
 }
